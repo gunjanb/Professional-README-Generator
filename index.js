@@ -6,7 +6,7 @@ const questions = [
   {
     type: "input",
     name: "githubUser",
-    message: "Please Enter your Github User Name",
+    message: "What is your Github User Name",
     validate: (githubUser) => {
       if (githubUser) {
         return true;
@@ -14,6 +14,36 @@ const questions = [
         return "Please enter your github user name";
       }
     },
+  },
+  {
+    type: "input",
+    name: "projectTitle",
+    message: "What is the Project Name",
+    validate: (value) => {
+      if (value) {
+        return true;
+      } else {
+        return "Please enter a Project Name";
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "description",
+    message: "Please provide a short decription of your project",
+    validate: (description) => {
+      if (description) {
+        return true;
+      } else {
+        return "Please enter description";
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "tableContents",
+    message: "Would you like to add table of contents in your README.md file",
+    default: false,
   },
 ];
 
