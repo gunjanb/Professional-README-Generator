@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
+const genMarkDown = require("./utils/generateMarkdown.js");
 // TODO: Create an array of questions for user input
 const questions = [
   {
@@ -128,7 +129,6 @@ const questions = [
       } else return "Please enter test Information.";
     },
     when: (answer) => {
-      //   console.log("answer is  ", answer);
       if (answer.addingTestIsTrue) {
         return true;
       } else {
@@ -153,7 +153,6 @@ const questions = [
       } else return "Please enter technology used.";
     },
     when: (answer) => {
-      //   console.log("answer is  ", answer);
       if (answer.technologyIsTrue) {
         return true;
       } else {
@@ -164,11 +163,19 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) =>
+    err
+      ? console.log(err)
+      : console.log("Successfully generated README.md file!")
+  );
+}
 // TODO: Create a function to initialize app
 function init() {
   inquirer.prompt(questions).then((response) => {
     console.log(response);
+    const readmeContent = genMarkDown(response);
+    writeToFile("./generatedREADME/README.md", readmeContent);
   });
 }
 
