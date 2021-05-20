@@ -133,6 +133,9 @@ function generateMarkdown(data) {
 
   ${renderSection(data.technologyInfo, "Technology")}
 
+  ${renderSection(data.contributorInfo, "Contributors")}
+
+  ${renderSection(data.testInfo, "Tests")}
 
   
 
