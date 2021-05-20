@@ -88,11 +88,11 @@ function renderSection(data, sectionName) {
     } else return "";
   } else if (sectionName === "Questions") {
     return `
-  // \n ## ${sectionName}\n
-  // If you have any questions about project you can either contact me or visit my github profile.\n 
-  // Link to my Github: [${data.githubUser}](https://github.com/${data.githubUser})\n
-  // Email address :[${data.emailId}](mailto:${data.emailId})
-  // `;
+  \n ## ${sectionName}\n
+  If you have any questions about project you can either contact me or visit my github profile.\n 
+  Link to my Github: [${data.githubUser}](https://github.com/${data.githubUser})\n
+  Email address :[${data.emailId}](mailto:${data.emailId})
+  `;
   }
 
   let sectionInfo = `\n ## ${sectionName}\n`;
