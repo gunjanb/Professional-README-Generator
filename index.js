@@ -18,7 +18,7 @@ const questions = [
   },
   {
     type: "input",
-    name: "mailId",
+    name: "emailId",
     message: "What is your email address :",
     validate: (mailId) => {
       if (mailId) {
