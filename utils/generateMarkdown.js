@@ -38,24 +38,26 @@ function renderLicenseSection(license) {
   if (license === "None") {
     return "";
   } else {
-    return `The application is covered under the license ${license}.For more Info please visit ${renderLicenseLink(
+    return `\n ## License
+    \n The application is covered under the license ${license}. For more Info please visit [License Info](${renderLicenseLink(
       license
-    )}`;
+    )})`;
   }
 }
 
 //function rendering table of content section
 function renderTableOfContents(answers) {
   let contents = ``;
+  if (answers.technologyIsTrue) {
+    contents += `\n[Technology](#Technology)\n`;
+  }
   if (answers.contributorsIstrue) {
     contents += `\n[Contributors](#Contributors)\n`;
   }
   if (answers.addingTestIsTrue) {
     contents += `\n[Test](#Test)\n`;
   }
-  if (answers.technologyIsTrue) {
-    contents += `\n[Technology](#Technology)\n`;
-  }
+
   if (answers.tableContents) {
     return `
   ## Table of Contents
@@ -66,18 +68,51 @@ function renderTableOfContents(answers) {
   } else return "";
 }
 
-function renderInstallationSection(installationInfo) {
-  let infoArray = installationInfo.split(",");
+function renderSection(info, sectionName) {
+  let infoArray = info.split(",");
   // console.log(infoArray);
-  let instruction = ``;
+  let sectionInfo = `\n ## ${sectionName}\n`;
   infoArray.forEach((element) => {
-    instruction += `- ${element.trim()}\n`;
+    sectionInfo += `- ${element.trim()}\n`;
   });
-  return `
-  ## Installation
-  ${instruction}
-  `;
+  return sectionInfo;
 }
+
+// function renderInstallationSection(installInfo) {
+//   let infoArray = installInfo.split(",");
+//   // console.log(infoArray);
+//   let instruction = ``;
+//   infoArray.forEach((element) => {
+//     instruction += `- ${element.trim()}\n`;
+//   });
+//   return `
+//   ## Installation
+//   ${instruction}
+//   `;
+// }
+
+// function renderTechnologySection(installInfo) {
+//   let infoArray = installInfo.split(",");
+//   // console.log(infoArray);
+//   let instruction = ``;
+//   infoArray.forEach((element) => {
+//     instruction += `- ${element.trim()}\n`;
+//   });
+//   return `
+//   ## Installation
+//   ${instruction}
+//   `;
+// }
+
+// function renderUsageSection(usageInfo) {
+//   let infoArray = usageInfo.split(",");
+//   // console.log(infoArray);
+//   let instruction = `## Usage \n`;
+//   infoArray.forEach((element) => {
+//     instruction += `- ${element.trim()}\n`;
+//   });
+//   return instruction;
+// }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
@@ -89,9 +124,16 @@ function generateMarkdown(data) {
   ${data.description}
 
   ${renderTableOfContents(data)}
+   
+  ${renderSection(data.installationInfo, "Installation")}
 
-  ${renderInstallationSection(data.installationInfo)}
-  
+  ${renderSection(data.usageInfo, "Usage")}
+
+  ${renderLicenseSection(data.licenseInfo)}
+
+  ${renderSection(data.technologyInfo, "Technology")}
+
+
   
 
 
@@ -100,3 +142,11 @@ function generateMarkdown(data) {
 }
 
 module.exports = generateMarkdown;
+
+// ${renderInstallationSection(data.installationInfo)}
+
+//   ${renderUsageSection(data.usageInfo)}
+
+//   ${renderLicenseSection(data.licenseInfo)}
+
+//   ${rendertTechnologySection(data.technologyInfo)}
