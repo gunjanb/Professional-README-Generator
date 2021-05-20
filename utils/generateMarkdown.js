@@ -44,14 +44,39 @@ function renderLicenseSection(license) {
   }
 }
 
+//function rendering table of content section
+function getTableOfContents(answers) {
+  let contents = ``;
+  if (answers.contributorsIstrue) {
+    contents += `\n[Contributors](#Contributors)\n`;
+  }
+  if (answers.addingTestIsTrue) {
+    contents += `\n[Test](#Test)\n`;
+  }
+  if (answers.technologyIsTrue) {
+    contents += `\n[Technology](#Technology)\n`;
+  }
+  if (answers.tableContents) {
+    return `
+  ## Table of Contents
+  [Installation](#Installation)\n
+  [Usage](#Usage)\n
+  [License](#License)\n
+  ${contents}  `;
+  } else return "";
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
   # ${data.projectTitle}\n
   ${renderLicenseBadge(data.licenseInfo)}
-  
+
   ## Description
   ${data.description}\n
+
+  ${getTableOfContents(data)}
+  
   
 
 
