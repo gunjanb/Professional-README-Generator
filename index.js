@@ -17,6 +17,18 @@ const questions = [
   },
   {
     type: "input",
+    name: "mailId",
+    message: "What is your mailID",
+    validate: (mailId) => {
+      if (mailId) {
+        return true;
+      } else {
+        return "Please enter your MailId";
+      }
+    },
+  },
+  {
+    type: "input",
     name: "projectTitle",
     message: "What is the Project Name",
     validate: (value) => {
@@ -89,9 +101,58 @@ const questions = [
         return true;
       } else return "Please enter contributor Information";
     },
-    when: function (answer) {
+    when: (answer) => {
       //   console.log("answer is  ", answer);
       if (answer.contributorsIstrue) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "addingTestIsTrue",
+    message: "Would you like to add Tests?",
+    default: false,
+  },
+  {
+    type: "input",
+    name: "testInfo",
+    message: "Please enter test information.(Please seperate the tests by ',')",
+    validate: (testInfo) => {
+      if (testInfo) {
+        return true;
+      } else return "Please enter test Information";
+    },
+    when: (answer) => {
+      //   console.log("answer is  ", answer);
+      if (answer.addingTestIsTrue) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "technologyIsTrue",
+    message: "Would you like to add Technology stack used?",
+    default: false,
+  },
+  {
+    type: "input",
+    name: "technologyInfo",
+    message:
+      "Please enter Technology Stack used.Please seperate the technologies by ',')",
+    validate: (technologyInfo) => {
+      if (technologyInfo) {
+        return true;
+      } else return "Please enter technology used";
+    },
+    when: (answer) => {
+      //   console.log("answer is  ", answer);
+      if (answer.technologyIsTrue) {
         return true;
       } else {
         return false;
