@@ -55,7 +55,7 @@ function renderTableOfContents(answers) {
     contents += `\n[Contributors](#Contributors)\n`;
   }
   if (answers.addingTestIsTrue) {
-    contents += `\n[Test](#Test)\n`;
+    contents += `\n[Tests](#Tests)\n`;
   }
 
   if (answers.tableContents) {
@@ -68,51 +68,39 @@ function renderTableOfContents(answers) {
   } else return "";
 }
 
-function renderSection(info, sectionName) {
-  let infoArray = info.split(",");
-  // console.log(infoArray);
+function renderSection(data, sectionName) {
+  let infoArray = [];
+  if (sectionName === "Installation") {
+    infoArray = data.installationInfo.split(",");
+  } else if (sectionName === "Usage") {
+    infoArray = data.usageInfo.split(",");
+  } else if (sectionName === "Technology") {
+    if (data.technologyIsTrue) {
+      infoArray = data.technologyInfo.split(",");
+    } else return "";
+  } else if (sectionName === "Contributors") {
+    if (data.contributorsIstrue) {
+      infoArray = data.contributorInfo.split(",");
+    } else return "";
+  } else if (sectionName === "Tests") {
+    if (data.addingTestIsTrue) {
+      infoArray = data.testInfo.split(",");
+    } else return "";
+  } else if (sectionName === "Questions") {
+    return `
+  // \n ## ${sectionName}\n
+  // If you have any questions about project you can either contact me or visit my github profile.\n 
+  // Link to my Github: [${data.githubUser}](https://github.com/${data.githubUser})\n
+  // Email address :[${data.emailId}](mailto:${data.emailId})
+  // `;
+  }
+
   let sectionInfo = `\n ## ${sectionName}\n`;
   infoArray.forEach((element) => {
     sectionInfo += `- ${element.trim()}\n`;
   });
   return sectionInfo;
 }
-
-// function renderInstallationSection(installInfo) {
-//   let infoArray = installInfo.split(",");
-//   // console.log(infoArray);
-//   let instruction = ``;
-//   infoArray.forEach((element) => {
-//     instruction += `- ${element.trim()}\n`;
-//   });
-//   return `
-//   ## Installation
-//   ${instruction}
-//   `;
-// }
-
-// function renderTechnologySection(installInfo) {
-//   let infoArray = installInfo.split(",");
-//   // console.log(infoArray);
-//   let instruction = ``;
-//   infoArray.forEach((element) => {
-//     instruction += `- ${element.trim()}\n`;
-//   });
-//   return `
-//   ## Installation
-//   ${instruction}
-//   `;
-// }
-
-// function renderUsageSection(usageInfo) {
-//   let infoArray = usageInfo.split(",");
-//   // console.log(infoArray);
-//   let instruction = `## Usage \n`;
-//   infoArray.forEach((element) => {
-//     instruction += `- ${element.trim()}\n`;
-//   });
-//   return instruction;
-// }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
@@ -125,18 +113,19 @@ function generateMarkdown(data) {
 
   ${renderTableOfContents(data)}
    
-  ${renderSection(data.installationInfo, "Installation")}
+  ${renderSection(data, "Installation")}
 
-  ${renderSection(data.usageInfo, "Usage")}
+  ${renderSection(data, "Usage")}
 
   ${renderLicenseSection(data.licenseInfo)}
 
-  ${renderSection(data.technologyInfo, "Technology")}
+  ${renderSection(data, "Technology")}
 
-  ${renderSection(data.contributorInfo, "Contributors")}
+  ${renderSection(data, "Contributors")}  
 
-  ${renderSection(data.testInfo, "Tests")}
+  ${renderSection(data, "Tests")}
 
+  ${renderSection(data, "Questions")}
   
 
 
