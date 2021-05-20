@@ -45,7 +45,7 @@ function renderLicenseSection(license) {
 }
 
 //function rendering table of content section
-function getTableOfContents(answers) {
+function renderTableOfContents(answers) {
   let contents = ``;
   if (answers.contributorsIstrue) {
     contents += `\n[Contributors](#Contributors)\n`;
@@ -66,16 +66,31 @@ function getTableOfContents(answers) {
   } else return "";
 }
 
+function renderInstallationSection(installationInfo) {
+  let infoArray = installationInfo.split(",");
+  // console.log(infoArray);
+  let instruction = ``;
+  infoArray.forEach((element) => {
+    instruction += `- ${element.trim()}\n`;
+  });
+  return `
+  ## Installation
+  ${instruction}
+  `;
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  # ${data.projectTitle}\n
+  # ${data.projectTitle}
   ${renderLicenseBadge(data.licenseInfo)}
 
-  ## Description
-  ${data.description}\n
+  ## Description 
+  ${data.description}
 
-  ${getTableOfContents(data)}
+  ${renderTableOfContents(data)}
+
+  ${renderInstallationSection(data.installationInfo)}
   
   
 
