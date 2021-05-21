@@ -1,4 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   let message = license.replace(/ /g, "%20");
@@ -7,7 +7,7 @@ function renderLicenseBadge(license) {
   else return "";
 }
 
-// TODO: Create a function that returns the license link
+// function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   let link = ``;
@@ -32,7 +32,7 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
+// function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license === "None") {
@@ -64,10 +64,12 @@ function renderTableOfContents(answers) {
   [Installation](#Installation)\n
   [Usage](#Usage)\n
   [License](#License)\n
-  ${contents}  `;
+  ${contents} 
+  [Questions](#Questions) `;
   } else return "";
 }
 
+//function rendering a section of READMme depending upon user input
 function renderSection(data, sectionName) {
   let infoArray = [];
   if (sectionName === "Installation") {
@@ -90,11 +92,10 @@ function renderSection(data, sectionName) {
     return `
   \n ## ${sectionName}\n
   If you have any questions about project you can either contact me or visit my github profile.\n 
-  Link to my Github: [${data.githubUser}](https://github.com/${data.githubUser})\n
+  Link to my Github: [My_GitHub_Profile](https://github.com/${data.githubUser})\n
   Email address :[${data.emailId}](mailto:${data.emailId})
   `;
   }
-
   let sectionInfo = `\n ## ${sectionName}\n`;
   infoArray.forEach((element) => {
     sectionInfo += `- ${element.trim()}\n`;
@@ -102,7 +103,7 @@ function renderSection(data, sectionName) {
   return sectionInfo;
 }
 
-// TODO: Create a function to generate markdown for README
+// function to generate markdown for README
 function generateMarkdown(data) {
   return `
   # ${data.projectTitle}
@@ -126,19 +127,7 @@ function generateMarkdown(data) {
   ${renderSection(data, "Tests")}
 
   ${renderSection(data, "Questions")}
-  
-
-
-
 `;
 }
 
 module.exports = generateMarkdown;
-
-// ${renderInstallationSection(data.installationInfo)}
-
-//   ${renderUsageSection(data.usageInfo)}
-
-//   ${renderLicenseSection(data.licenseInfo)}
-
-//   ${rendertTechnologySection(data.technologyInfo)}
