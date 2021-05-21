@@ -174,7 +174,7 @@ function writeToFile(fileName, data) {
 //function to initialize app
 function init() {
   inquirer.prompt(questions).then((response) => {
-    console.log(response);
+    // console.log(response);
     const readmeContent = genMarkDown(response);
     writeToFile("./generatedREADME/README.md", readmeContent);
   });
