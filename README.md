@@ -34,15 +34,15 @@ In this application user is asked a series of questions which includes whats you
 
 - Console ScreenShot
 
-![CLI](./images/snapshotofterminal.jpg)
+  ![CLI](./images/snapshotofterminal.jpg)
 
 - Video link
 
-![Demo](./images/appwalkthruVideo)
+  [Watch Video here](https://drive.google.com/file/d/1uDdgXtsE7DYf_5vnGA2TK21qstSY4t-H/view)
 
 ## License
 
-- None
+- The application is covered under the license MIT. For more Info please visit [License Info](https://opensource.org/licenses/MIT)
 
 ## Contributors
 
