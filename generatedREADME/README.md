@@ -3,7 +3,7 @@
   ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
   ## Description 
-  This application generates README file based on user inputs.
+  This application generates README file based on user input.
 
   
   ## Table of Contents
@@ -24,8 +24,8 @@
    
   
  ## Installation
-- First install Node.js
-- Install inquirer package.
+- Step1
+- Step2
 
 
   
